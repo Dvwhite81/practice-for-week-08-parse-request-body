@@ -1,25 +1,43 @@
 function firstStep(input) {
-  // Your code here
+  return input.split('&');
 }
 
 function secondStep(input) {
-  // Your code here
+  return input.map(
+    keyValue => keyValue.split('=')
+  );
 }
 
 function thirdStep(input) {
-  // Your code here
+  return input.map(
+    arr => arr.map(
+      el => el.replace(/\+/g, " ")
+    )
+  );
 }
 
 function fourthStep(input) {
-  // Your code here
+  return input.map(
+    arr => arr.map(
+      el => decodeURIComponent(el)
+    )
+  );
 }
 
 function fifthStep(input) {
-  // Your code here
+  let obj = {};
+
+  input.forEach((el) => {
+    let key = el[0];
+    let value = el[1];
+
+    obj[key] = value;
+  });
+  return obj;
 }
 
 function parseBody(str) {
-  // Your code here
+  return fifthStep(fourthStep(thirdStep(secondStep(firstStep(str)))));
 }
 
 /******************************************************************************/
